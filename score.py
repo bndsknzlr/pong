@@ -40,16 +40,25 @@ class Score(Turtle):
         self.pl_1_score = 0
         self.pl_2_score = 0
         self.hideturtle()
-        # self.build_score_pl1()
-        self.build_score_pl2()
+        self.build_start_score()
 
-    def track_score(self):
-        score_count = 
+    def track_score_pl1(self):
+        self.pl_1_score += 1
+        score_count_pl1 = self.pl_1_score
+        self.build_score_pl1(score_count_pl1)
 
+    def track_score_pl2(self):
+        self.pl_1_score += 1
+        score_count_pl2 = self.pl_2_score
+        self.build_score_pl2(score_count_pl2)
 
-    def build_score_pl1(self):
+    def build_start_score(self):
+        self.build_score_pl1(0)
+        self.build_score_pl2(0)
+
+    def build_score_pl1(self, score_count_pl1):
         """takes the score count and builds the score gfx"""
-        for limbo in SCORE_NUMBERS[score_count][score_count]:
+        for limbo in SCORE_NUMBERS[score_count_pl1][score_count_pl1]:
             self.block = Turtle("square")
             self.block.shapesize(0.5)
             self.block.penup()
@@ -57,8 +66,8 @@ class Score(Turtle):
             self.block.goto(limbo)
             print(limbo)
 
-    def build_score_pl2(self, score_count):
-        for limbo in SCORE_NUMBERS[score_count][score_count]:
+    def build_score_pl2(self, score_count_pl2):
+        for limbo in SCORE_NUMBERS[score_count_pl2][score_count_pl2]:
             self.block = Turtle("square")
             self.block.shapesize(0.5)
             self.block.penup()
@@ -69,6 +78,6 @@ class Score(Turtle):
                 limbo_neg = float(items * -1)
                 neg_list.append(limbo_neg)
             neg_limbo = tuple(neg_list)
-# fixme 1. : just one parameter changes - needs two
+            # fixme 1. : just one parameter changes - needs two
             self.block.goto(neg_limbo)
             print(neg_limbo)
