@@ -26,15 +26,15 @@ line.setheading(270)
 
 # drawing middle line
 
-for step in range(16):
-    line.pendown()
-    line.forward(25)
-    line.penup()
-    line.forward(25)
-    screen.update()
+# for step in range(16):
+#     line.pendown()
+#     line.forward(25)
+#     line.penup()
+#     line.forward(25)
+#     screen.update()
 
 
-score = Score()
+# score = Score()
 player_1 = Player1()
 player_2 = Player2()
 ball = Ball()
@@ -62,7 +62,7 @@ while game_on:
     elif out_ball >= 620 or out_ball <= - 620:
         game_on = False
 
-    time.sleep(0.03)
+    time.sleep(0.001)
 
 
 screen.exitonclick()
