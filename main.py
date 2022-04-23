@@ -2,7 +2,7 @@ from turtle import Screen, Turtle
 from score import Score
 from ball import Ball
 import time
-from players import Player1, Player2
+from players import Paddle
 
 
 line = Turtle()
@@ -11,7 +11,7 @@ screen = Screen()
 
 # setting up screen
 
-screen.setup(width=1200, height=800)
+screen.setup(width=800, height=600)
 screen.colormode(255)
 screen.bgcolor("red")
 screen.title("PONG")
@@ -23,20 +23,36 @@ line.penup()
 line.goto(0, 400)
 line.pensize(5)
 line.setheading(270)
+start_pl1 = (-350, 0)
+start_pl2 = (350, 0)
 
 # drawing middle line
 
-# for step in range(16):
-#     line.pendown()
-#     line.forward(25)
-#     line.penup()
-#     line.forward(25)
-#     screen.update()
+for step in range(16):
+    line.pendown()
+    line.forward(25)
+    line.penup()
+    line.forward(25)
+    screen.update()
+
+# setting up borders
+
+border_top = Turtle()
+border_top.color("white")
+border_top.goto(0, 300)
+border_top.shape("square")
+border_top.shapesize(stretch_len=40, stretch_wid=0.2)
+
+border_bot = Turtle()
+border_bot.color("white")
+border_bot.goto(0, -290)
+border_bot.shape("square")
+border_bot.shapesize(stretch_len=40, stretch_wid=0.2)
 
 
-# score = Score()
-player_1 = Player1()
-player_2 = Player2()
+score = Score()
+player_1 = Paddle(start_pl1)
+player_2 = Paddle(start_pl2)
 ball = Ball()
 
 screen.update()
@@ -53,16 +69,16 @@ game_on = True
 
 while game_on:
     screen.update()
-    screen.listen()
     ball.move_ball()
     border_ball = ball.ycor()
     out_ball = ball.xcor()
-    if border_ball >= 330 or border_ball <= - 330:
-        ball.bounce_ball(ball.heading())
+    head_ball = ball.heading()
+    if ball.distance(border_top) < 15 or ball.distance(border_bot) < 15:
+        ball.bounce_ball(head_ball)
     elif out_ball >= 620 or out_ball <= - 620:
         game_on = False
 
-    time.sleep(0.001)
+   # time.sleep(0.001)
 
 
 screen.exitonclick()

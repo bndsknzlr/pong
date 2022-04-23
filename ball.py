@@ -5,9 +5,9 @@ import random
 class Ball(Turtle):
 
     def __init__(self):
-        super().__init__("square")
+        super().__init__("turtle")
         self.color("white")
-        self.shapesize(0.5)
+        self.shapesize(0.75)
         self.penup()
         self.bounce_heading = None
         self.start_heading()
@@ -17,11 +17,13 @@ class Ball(Turtle):
         self.seth(rand_degree)
 
     def move_ball(self):
-        self.forward(3)
+        self.forward(4)
 
     def bounce_ball(self, ball_heading):
-        self.bounce_heading = ball_heading + 10
+        self.forward(0)
+        self.bounce_heading = ball_heading *2
         self.seth(self.bounce_heading)
+        self.forward(4)
 
 
 
