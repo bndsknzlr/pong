@@ -78,7 +78,7 @@ while game_on:
     elif out_ball >= 620 or out_ball <= - 620:
         game_on = False
 
-   # time.sleep(0.001)
+   time.sleep(0.001)
 
 
 screen.exitonclick()
