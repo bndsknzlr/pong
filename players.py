@@ -10,17 +10,15 @@ class Paddle(Turtle):
         super().__init__("square")
         self.penup()
         self.color("white")
-        self.setheading(UP)
-        self.shapesize(stretch_wid=0.75, stretch_len=5)
+        self.shapesize(stretch_wid=5, stretch_len=0.75)
         self.goto(position)
 
     def up(self):
-        self.setheading(UP)
-        self.forward(30)
+        new_y = self.ycor() + 10
+        self.goto(x=self.xcor(), y=new_y)
 
     def down(self):
-        self.setheading(DOWN)
-        self.forward(30)
-
+        new_y = self.ycor() - 10
+        self.goto(x=self.xcor(), y=new_y)
 
 # Todo 3 : make paddle stop at boundary
