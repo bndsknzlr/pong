@@ -18,7 +18,7 @@ screen.title("PONG")
 screen.mode("standard")
 screen.tracer(0)
 line.color("white")
-# line.hideturtle()
+line.hideturtle()
 line.penup()
 line.goto(0, 300)
 line.pensize(5)
@@ -35,27 +35,12 @@ for step in range(15):
     line.forward(25)
     screen.update()
 
-# setting up borders
 
-# border_top = Turtle()
-# border_top.color("white")
-# border_top.goto(0, 300)
-# border_top.shape("square")
-# border_top.shapesize(stretch_len=40, stretch_wid=0.2)
-#
-# border_bot = Turtle()
-# border_bot.color("white")
-# border_bot.goto(0, -290)
-# border_bot.shape("square")
-# border_bot.shapesize(stretch_len=40, stretch_wid=0.2)
-
-
-score = Score()
 player_1 = Paddle(start_pl1)
 player_2 = Paddle(start_pl2)
 ball = Ball()
 
-screen.update()
+# screen.update()
 
 screen.listen()
 
@@ -64,7 +49,7 @@ screen.onkey(fun=player_2.up, key="o")
 screen.onkey(fun=player_1.down, key="s")
 screen.onkey(fun=player_2.down, key="l")
 
-
+score = Score()
 game_on = True
 while game_on:
     screen.update()
@@ -72,16 +57,17 @@ while game_on:
     border_ball = ball.ycor()
     out_ball = ball.xcor()
     head_ball = ball.heading()
-    if border_ball > 200 or border_ball < -200:
+    if border_ball > 280 or border_ball < -280:
         ball.bounce_ball_wall()
+    elif player_1.distance(ball) <= 25 and out_ball == -350 or player_2.distance(ball) <= 25 and out_ball >= 340:
+        ball.bounce_ball_paddle()
+    elif out_ball >= 390 or out_ball <= - 380:
+        game_on = False
+
     else:
         pass
-    # if ball.distance(border_top) < 15 or ball.distance(border_bot) < 15:
-    #     ball.bounce_ball(head_ball)
-    # elif out_ball >= 620 or out_ball <= - 620:
-    #     game_on = False
 
-    time.sleep(0.08)
+    time.sleep(0.05)
 
 
 screen.exitonclick()

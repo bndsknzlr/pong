@@ -1,9 +1,5 @@
 from turtle import Turtle
 
-MOVE_DISTANCE = 17
-UP = 90
-DOWN = 270
-
 
 class Paddle(Turtle):
     def __init__(self, position):
@@ -14,11 +10,11 @@ class Paddle(Turtle):
         self.goto(position)
 
     def up(self):
-        new_y = self.ycor() + 10
+        new_y = self.ycor() + 20
         self.goto(x=self.xcor(), y=new_y)
 
     def down(self):
-        new_y = self.ycor() - 10
+        new_y = self.ycor() - 20
         self.goto(x=self.xcor(), y=new_y)
 
 # Todo 3 : make paddle stop at boundary
