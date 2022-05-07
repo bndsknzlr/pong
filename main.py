@@ -61,8 +61,15 @@ while game_on:
         ball.bounce_ball_wall()
     elif player_1.distance(ball) <= 25 and out_ball == -350 or player_2.distance(ball) <= 25 and out_ball >= 340:
         ball.bounce_ball_paddle()
-    elif out_ball >= 390 or out_ball <= - 380:
+    elif out_ball >= 390:
+
+        score.track_score_pl1()
         game_on = False
+    elif out_ball <= -380:
+
+        score.track_score_pl2()
+        game_on = False
+
 
     else:
         pass
