@@ -85,10 +85,14 @@ class Score(Turtle):
         self.build_score_pl1(0)
         self.build_score_pl2(0)
 
+    def reset_score(self):
+        self.reset()
+
     def build_score_pl1(self, score_count_pl1):
         """takes the score count and builds the score gfx"""
         if score_count_pl1 < 10:
             for limbo in SCORE_NUMBERS_pl1[score_count_pl1][score_count_pl1]:
+                self.hideturtle()
                 self.block = Turtle("square")
                 self.block.shapesize(0.5)
                 self.block.penup()
@@ -123,6 +127,7 @@ class Score(Turtle):
         """takes score_count for player two as an input and builds score from list SCORE NUMBERS"""
         if score_count_pl2 < 10:
             for limbo in SCORE_NUMBERS_pl2[score_count_pl2][score_count_pl2]:
+                self.hideturtle()
                 self.block = Turtle("square")
                 self.block.shapesize(0.5)
                 self.block.penup()

@@ -38,7 +38,7 @@ for step in range(15):
 
 player_1 = Paddle(start_pl1)
 player_2 = Paddle(start_pl2)
-ball = Ball()
+
 
 # screen.update()
 
@@ -52,29 +52,29 @@ screen.onkey(fun=player_2.down, key="l")
 score = Score()
 game_on = True
 while game_on:
-    screen.update()
-    ball.move_ball()
-    border_ball = ball.ycor()
-    out_ball = ball.xcor()
-    head_ball = ball.heading()
-    if border_ball > 280 or border_ball < -280:
-        ball.bounce_ball_wall()
-    elif player_1.distance(ball) <= 25 and out_ball == -350 or player_2.distance(ball) <= 25 and out_ball >= 340:
-        ball.bounce_ball_paddle()
-    elif out_ball >= 390:
+    score.clear()
+    ball = Ball()
+    fight_on = True
+    while fight_on:
+        screen.update()
+        ball.move_ball()
+        border_ball = ball.ycor()
+        out_ball = ball.xcor()
+        head_ball = ball.heading()
+        if border_ball > 280 or border_ball < -280:
+            ball.bounce_ball_wall()
+        elif player_1.distance(ball) <= 25 and out_ball == -350 or player_2.distance(ball) <= 25 and out_ball >= 340:
+            ball.bounce_ball_paddle()
+        elif out_ball >= 390:
+            fight_on = False
+            time.sleep(1)
+            score.track_score_pl1()
+        elif out_ball <= -380:
+            fight_on = False
+            score.track_score_pl2()
+            time.sleep(1)
 
-        score.track_score_pl1()
-        game_on = False
-    elif out_ball <= -380:
-
-        score.track_score_pl2()
-        game_on = False
-
-
-    else:
-        pass
-
-    time.sleep(0.05)
+        time.sleep(0.05)
 
 
 screen.exitonclick()
